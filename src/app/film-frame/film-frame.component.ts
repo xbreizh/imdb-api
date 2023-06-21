@@ -11,7 +11,7 @@ export class FilmFrameComponent {
   @Input() film!: Film;
 
   constructor(private datePipe: DatePipe) {
-    console.log('film ' + this.film)
+    //console.log('film ' + this.film)
   }
 
 

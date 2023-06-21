@@ -1,7 +1,4 @@
-<div class="film-card" *ngIf="film">
-    <h2>Title{{ film.title }}</h2>
-    <img [src]="film.posterUrl" alt="Film Poster" class="film-image">
-    <p>Description: {{ film.description }}</p>
-    <p>Creation date: {{ this.getFormattedDate(film.created) }}</p>
-</div>
-  
+<h2>Title{{ film.title }}</h2>
+<img [src]="film.posterUrl" alt="Film Poster" class="film-image">
+<p>Description: {{ film.description }}</p>
+<p>Creation date: {{ this.getFormattedDate(film.created) }}</p>
