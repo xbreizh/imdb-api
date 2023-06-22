@@ -1,4 +1,4 @@
 <h2>Title{{ film.title }}</h2>
-<img [src]="film.posterUrl" alt="Film Poster" class="film-image">
+<img src="{{ film.posterUrl }}" alt="Film Poster" class="img-responsive im-frame">
 <p>Description: {{ film.description }}</p>
 <p>Creation date: {{ this.getFormattedDate(film.created) }}</p>

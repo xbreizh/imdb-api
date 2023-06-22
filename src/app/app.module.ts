@@ -7,6 +7,8 @@ import { FilmListComponent } from './film-list/film-list.component';
 import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 import { DatePipe } from '@angular/common';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { ShuffleComponent } from './shuffle/shuffle.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { DatePipe } from '@angular/common';
     FilmFrameComponent,
     FilmListComponent,
     FilmDetailComponent,
-    ActorDetailComponent
+    ActorDetailComponent,
+    SearchbarComponent,
+    ShuffleComponent
   ],
   imports: [
     BrowserModule,

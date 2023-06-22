@@ -16,7 +16,7 @@ export class FilmListComponent implements OnInit{
 
   ngOnInit() {
     this.films = this._filmService.getFilms();
-    console.log(this.films[0].title)
+    console.log(this.films.length)
   }
 
 }
