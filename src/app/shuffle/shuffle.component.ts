@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilmService } from '../film.service';
 
 @Component({
   selector: 'app-shuffle',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./shuffle.component.scss']
 })
 export class ShuffleComponent {
+
+constructor(public filmService: FilmService){
+
+}
+
+shuffle(){
+  this.filmService.shuffle();
+}
 
 }

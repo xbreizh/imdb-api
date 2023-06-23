@@ -9,15 +9,15 @@ import { DatePipe } from '@angular/common';
 })
 export class FilmFrameComponent {
   @Input() film!: Film;
+  dateFormat: string = 'dd-MM-yyyy';
 
   constructor(private datePipe: DatePipe) {
-    //console.log('film ' + this.film)
   }
 
 
   getFormattedDate(date: Date | null): string {
     if (date) {
-      return this.datePipe.transform(date, 'dd-MM-yyyy') || '';
+      return this.datePipe.transform(date, this.dateFormat) || '';
     } else {
       return '';
     } 

@@ -9,6 +9,7 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ShuffleComponent } from './shuffle/shuffle.component';
+import { FilmPojoComponent } from './fil-pojo/film-pojo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ShuffleComponent } from './shuffle/shuffle.component';
     FilmDetailComponent,
     ActorDetailComponent,
     SearchbarComponent,
-    ShuffleComponent
+    ShuffleComponent,
+    FilmPojoComponent
   ],
   imports: [
     BrowserModule,

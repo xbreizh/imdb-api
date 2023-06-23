@@ -1,193 +1,25 @@
 import { Injectable } from '@angular/core';
-import { SearchCriteria } from './search-criteria';
 import { Film } from './film';
 import { FilmCategory } from './film-category.enum';
+import { FilmPojoComponent } from './fil-pojo/film-pojo.component';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmService {
-  private films: Film[] = [
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
+  private films: Film[] = [];
+  private filmsSubject: BehaviorSubject<Film[]> = new BehaviorSubject<Film[]>([]);
 
-    {
-      id: 1,
-      title: 'Film 1',
-      description: 'Description of Film 1',
-      category: FilmCategory.Action,
-      created: new Date(),
-      posterUrl: 'https://upload.wikimedia.org/wikipedia/fr/c/c0/Le_Voyage_fantastique_%28film%2C_1966%29.png'
-    },
-    {
-      id: 2,
-      title: 'Film 2',
-      description: 'Description of Film 2',
-      category: FilmCategory.Drama,
-      created: new Date(),
-      posterUrl: 'https://www.radiofrance.fr/s3/cruiser-production/2023/01/36649a3e-d3d8-4064-b657-f6b1afaba1d9/870x489_babylon.jpg'
-    },
-  ];
+  constructor(private pojoFilm: FilmPojoComponent) {
+    this.initializeFilms();
+   }
 
-  constructor() { }
+   private initializeFilms(): void {
+    this.films = this.pojoFilm.getFilms();
+    this.filmsSubject.next(this.films);
+  }
 
   getFilms(): Film[] {
     return this.films;
@@ -197,12 +29,22 @@ export class FilmService {
 
   }
 
-  getFilmByCriteria(criteria: SearchCriteria) {
+  getFilmsByKeyWord(keyword: string) {
 
   }
 
   getFilmsByCategory(category: FilmCategory): Film[] {
-    console.log("need to filter by " + category);
     return this.films.filter(film => film.category === category);
+  }
+
+  shuffle(): void{
+    console.log('shuffling');
+    this.filmsSubject.next(this.pojoFilm.getFilmSample());
+    console.log("films length " + this.films.length);
+  }
+
+
+  getFilmsObservable(): Observable<Film[]> {
+    return this.filmsSubject.asObservable();
   }
 }
