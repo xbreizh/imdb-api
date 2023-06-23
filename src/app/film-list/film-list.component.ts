@@ -3,6 +3,8 @@ import { FilmService } from '../film.service';
 import { Film } from '../film';
 import { FilmCategory } from '../film-category.enum';
 import { CategoryService } from '../category.service';
+import { FilmDetailPopupComponent } from '../film-detail-popup/film-detail-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-film-list',
@@ -15,7 +17,8 @@ export class FilmListComponent implements OnInit {
 
   constructor(
     private _filmService: FilmService,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -34,4 +37,13 @@ export class FilmListComponent implements OnInit {
       this.films = this._filmService.getFilmsByCategory(this.selectedCategory);
     }
   }
+
+  openFilmDetailPopup(): void {
+    console.log('tryint to open a popup');
+    const dialogRef = this.dialog.open(FilmDetailPopupComponent, {
+      width: '80%',
+      data: 'Hello World'
+    });
+  }
+  
 }

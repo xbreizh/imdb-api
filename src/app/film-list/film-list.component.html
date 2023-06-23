@@ -1,7 +1,7 @@
 <div class="row">
-  <div *ngFor="let film of films; let i = index" class="col-lg-2 col-md-4 col-sm-6 col-xs-1 film-item">
-   <app-film-frame [film]="film" (click)="openFilmDetailPopup(film)"></app-film-frame>
-   <!-- This adds a new row every time we reach 6 items (max column length for the row) -->
+  <div *ngFor="let film of films; let i = index" class="col-lg-2 col-md-4 col-sm-6 col-xs-1 film-item" (click)="openFilmDetailPopup()">
+    <app-film-frame [film]="film"></app-film-frame>
+    <!-- This adds a new row every time we reach 6 items (max column length for the row) -->
     <div *ngIf="(i + 1) % 6 === 0" class="clearfix"></div>
   </div>
 </div>

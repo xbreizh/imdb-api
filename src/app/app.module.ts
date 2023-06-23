@@ -10,6 +10,8 @@ import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ShuffleComponent } from './shuffle/shuffle.component';
 import { FilmPojoComponent } from './fil-pojo/film-pojo.component';
+import { FilmDetailPopupComponent } from './film-detail-popup/film-detail-popup.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { FilmPojoComponent } from './fil-pojo/film-pojo.component';
     ActorDetailComponent,
     SearchbarComponent,
     ShuffleComponent,
-    FilmPojoComponent
+    FilmPojoComponent,
+    FilmDetailPopupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
   providers: [
     DatePipe
