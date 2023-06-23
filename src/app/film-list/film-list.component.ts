@@ -12,7 +12,8 @@ import { SearchCriteria } from '../search-criteria';
 })
 export class FilmListComponent implements OnInit {
   films!: Film[];
-  selectedCategory: FilmCategory = FilmCategory.None;
+  // Sets the first category from the FilmCategory
+  selectedCategory: FilmCategory = Object.values(FilmCategory)[0];
   searchCriteria: SearchCriteria | null = null;;
 
   constructor(
@@ -36,20 +37,3 @@ export class FilmListComponent implements OnInit {
     }
   }
 }
-
-
-//   ngOnInit() {
-//     this.films = this.filmService.getFilms();
-//     this.categoryService.selectedCategory$.subscribe(category => {
-//       this.selectedCategory = category;
-//       // Update films based on the selected category
-//       this.updateFilms();
-//     });
-//   }
-
-//   updateFilms(): void {
-//     // Update the films based on the selected category
-//     // You can implement your logic here to filter films based on the category
-//     console.log(this.selectedCategory);
-//   }
-// }

@@ -6,7 +6,7 @@ import { FilmCategory } from './film-category.enum';
   providedIn: 'root'
 })
 export class CategoryService {
-  private selectedCategorySubject: BehaviorSubject<FilmCategory> = new BehaviorSubject<FilmCategory>(FilmCategory.None);
+  private selectedCategorySubject: BehaviorSubject<FilmCategory> = new BehaviorSubject<FilmCategory>(Object.values(FilmCategory)[0]);
   selectedCategory$: Observable<FilmCategory> = this.selectedCategorySubject.asObservable();
 
   setSelectedCategory(category: FilmCategory): void {

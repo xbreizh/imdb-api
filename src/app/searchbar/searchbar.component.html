@@ -5,8 +5,9 @@
 
     <ul class="dropdown-menu">
         <li *ngFor="let category of categories">
-            <a class="dropdown-item" href="#" (click)="selectCategory(category)">
-            </a>{{category}}
+            <a class="dropdown-item" href="#" (click)="selectCategory(category)" *ngIf="category !== 'None'">
+                {{category}} 
+            </a>
         </li>
     </ul>
 </div>
