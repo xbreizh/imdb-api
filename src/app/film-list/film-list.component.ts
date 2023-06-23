@@ -38,11 +38,11 @@ export class FilmListComponent implements OnInit {
     }
   }
 
-  openFilmDetailPopup(): void {
+  openFilmDetailPopup(film: Film): void {
     console.log('trying to open a popup');
     const dialogRef = this.dialog.open(FilmDetailPopupComponent, {
       width: '80%',
-      data: 'Hello World'
+      data: film
     });
   }
   

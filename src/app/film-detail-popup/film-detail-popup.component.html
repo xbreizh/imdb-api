@@ -1,5 +1,49 @@
-<div class="film-detail-popup">
-    <div class="popup-content">
-        <h2>{{ data }}</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Title{{ film.title }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h2>Type - {{ getFormattedDate(film.created) }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="row">
+                <div class="col">
+                    IMDB RATING
+                </div>
+                <div class="col">
+                    9.0/10
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-1">
+            <img src="{{ film.posterUrl }}" alt="Film Poster" class="img-fluid">
+        </div>
+        <div class="col-5 offset-1">
+            <img src="{{ film.posterUrl }}" alt="Film Poster" class="img-fluid">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ film.description }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+           Creators
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            Stars
+        </div>
     </div>
 </div>
