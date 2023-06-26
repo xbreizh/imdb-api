@@ -5,6 +5,7 @@ import { FilmCategory } from '../film-category.enum';
 import { CategoryService } from '../category.service';
 import { FilmDetailPopupComponent } from '../film-detail-popup/film-detail-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-film-list',
@@ -16,6 +17,7 @@ export class FilmListComponent implements OnInit {
   selectedCategory: FilmCategory = Object.values(FilmCategory)[0];
 
   constructor(
+    private router: Router,
     private _filmService: FilmService,
     private categoryService: CategoryService,
     private dialog: MatDialog) {
@@ -38,6 +40,11 @@ export class FilmListComponent implements OnInit {
     }
   }
 
+  openFilmDetailPage(filmId: number) {
+    console.log('opening a new page');
+    this.router.navigate(['/film', filmId]);
+  }
+
   openFilmDetailPopup(film: Film): void {
     console.log('trying to open a popup');
     const dialogRef = this.dialog.open(FilmDetailPopupComponent, {
@@ -45,5 +52,5 @@ export class FilmListComponent implements OnInit {
       data: film
     });
   }
-  
+
 }

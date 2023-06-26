@@ -1,1 +1,9 @@
 <p>film-detail works!</p>
+
+<button type="button" class="btn btn-info" (click)="goBackToList()">Back</button>
+
+
+<h2>{{ film?.title }}</h2>
+<img [src]="film?.posterUrl" alt="Film Poster" class="img-responsive">
+<p>Description: {{ film?.description }}</p>
+<p>Creation date: {{ film?.created }}</p>

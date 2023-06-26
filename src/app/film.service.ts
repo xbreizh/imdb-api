@@ -14,9 +14,9 @@ export class FilmService {
 
   constructor(private pojoFilm: FilmPojoComponent) {
     this.initializeFilms();
-   }
+  }
 
-   private initializeFilms(): void {
+  private initializeFilms(): void {
     this.films = this.pojoFilm.getFilms();
     this.filmsSubject.next(this.films);
   }
@@ -25,8 +25,12 @@ export class FilmService {
     return this.films;
   }
 
-  getFilmById(id: number) {
-
+  getFilmById(id: number): Film | undefined {
+    console.log('finding gile')
+    const film: Film | undefined = this.films.find(film => film.id === id);
+    console.log('film found ' + film?.id);
+    console.log('film found ' + film?.title);
+    return film;
   }
 
   getFilmsByKeyWord(keyword: string) {
@@ -37,7 +41,7 @@ export class FilmService {
     return this.films.filter(film => film.category === category);
   }
 
-  shuffle(): void{
+  shuffle(): void {
     console.log('shuffling');
     this.filmsSubject.next(this.pojoFilm.getFilmSample());
     console.log("films length " + this.films.length);
