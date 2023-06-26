@@ -25,11 +25,11 @@ export class FilmService {
     return this.films;
   }
 
-  getFilmById(id: number): Film | undefined {
+  getFilmById(id: string): Film | undefined {
     console.log('finding gile')
-    const film: Film | undefined = this.films.find(film => film.id === id);
-    console.log('film found ' + film?.id);
-    console.log('film found ' + film?.title);
+    const film: Film | undefined = this.films.find(film => film.imdbID === id);
+    console.log('film found ' + film?.imdbID);
+    console.log('film found ' + film?.Title);
     return film;
   }
 
@@ -37,8 +37,8 @@ export class FilmService {
 
   }
 
-  getFilmsByCategory(category: FilmCategory): Film[] {
-    return this.films.filter(film => film.category === category);
+  getFilmsByCategory(): Film[] {
+    return this.films.filter(film => film.Genre === "Drama");
   }
 
   shuffle(): void {

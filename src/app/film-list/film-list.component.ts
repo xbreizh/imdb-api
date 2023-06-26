@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../film.service';
 import { Film } from '../film';
-import { FilmCategory } from '../film-category.enum';
-import { CategoryService } from '../category.service';
-import { FilmDetailPopupComponent } from '../film-detail-popup/film-detail-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
@@ -14,43 +11,27 @@ import { Router } from '@angular/router';
 })
 export class FilmListComponent implements OnInit {
   films!: Film[];
-  selectedCategory: FilmCategory = Object.values(FilmCategory)[0];
 
   constructor(
     private router: Router,
     private _filmService: FilmService,
-    private categoryService: CategoryService,
     private dialog: MatDialog) {
   }
 
   ngOnInit() {
+    console.log('entering list');
     this.films = this._filmService.getFilms();
-    this.categoryService.selectedCategory$.subscribe(category => {
-      this.selectedCategory = category;
-      this.updateFilms();
-    });
+
     this._filmService.getFilmsObservable().subscribe(films => this.films = films)
   }
 
   updateFilms(): void {
-    if (this.selectedCategory === FilmCategory.None) {
-      this.films = this._filmService.getFilms();
-    } else {
-      this.films = this._filmService.getFilmsByCategory(this.selectedCategory);
-    }
+   
   }
 
-  openFilmDetailPage(filmId: number) {
+  openFilmDetailPage(filmId: string) {
     console.log('opening a new page');
     this.router.navigate(['/film', filmId]);
-  }
-
-  openFilmDetailPopup(film: Film): void {
-    console.log('trying to open a popup');
-    const dialogRef = this.dialog.open(FilmDetailPopupComponent, {
-      width: '80%',
-      data: film
-    });
   }
 
 }

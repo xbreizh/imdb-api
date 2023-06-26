@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Film } from '../film';
 import { DatePipe } from '@angular/common';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FilmDetailPopupComponent } from '../film-detail-popup/film-detail-popup.component';
 
 @Component({
   selector: 'app-film-frame',
@@ -8,10 +10,16 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./film-frame.component.scss']
 })
 export class FilmFrameComponent {
+
   @Input() film!: Film;
   dateFormat: string = 'dd-MM-yyyy';
-
-  constructor(private datePipe: DatePipe) {
+  dialogRef!: MatDialogRef<FilmDetailPopupComponent>;
+  popupOpened: boolean = false;
+  
+  constructor(
+    private datePipe: DatePipe,
+    private dialog: MatDialog
+  ) {
   }
 
 
@@ -20,7 +28,25 @@ export class FilmFrameComponent {
       return this.datePipe.transform(date, this.dateFormat) || '';
     } else {
       return '';
+    }
+  }
+
+  openPopup(): void {
+    if (!this.popupOpened){
+      console.log('trying to open a popup');
+      this.dialogRef = this.dialog.open(FilmDetailPopupComponent, {
+        width: '80%',
+        data: this.film
+      });
+      this.popupOpened = true;
     } 
   }
 
+  closePopup(): void {
+    console.log('closing the popup');
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.popupOpened = false;
+  }
 }

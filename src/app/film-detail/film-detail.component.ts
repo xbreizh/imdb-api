@@ -23,13 +23,8 @@ export class FilmDetailComponent {
     const filmId = this.route.snapshot.paramMap.get('id');
     console.log('getting into details ' + filmId)
     if (filmId) {
-      const id = +filmId; // Convert the filmId from string to number
+      const id = filmId; // Convert the filmId from string to number
       this.film = this.filmService.getFilmById(id);
-      console.log('film retrieved ' + this.film?.title);
     }
-  }
-
-  goBackToList(): void {
-    this.router.navigate(['/']);
   }
 }
