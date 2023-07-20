@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class FilmService {
   private films: Film[] = [];
   private filmsSubject: BehaviorSubject<Film[]> = new BehaviorSubject<Film[]>([]);
+  private filmCategory: FilmCategory = FilmCategory.All;
 
   constructor(private pojoFilm: FilmPojoComponent) {
     this.initializeFilms();
@@ -26,10 +27,7 @@ export class FilmService {
   }
 
   getFilmById(id: string): Film | undefined {
-    console.log('finding gile')
     const film: Film | undefined = this.films.find(film => film.imdbID === id);
-    console.log('film found ' + film?.imdbID);
-    console.log('film found ' + film?.Title);
     return film;
   }
 
@@ -37,14 +35,23 @@ export class FilmService {
 
   }
 
-  getFilmsByCategory(): Film[] {
-    return this.films.filter(film => film.Genre === "Drama");
+  refreshFilmSubject(){
+    if (this.filmCategory.toUpperCase() === 'ALL') {
+      this.filmsSubject.next(this.films);
+    } else {
+      const filteredFilms: Film[] = this.films.filter(film => film.Genre.toUpperCase().includes(this.filmCategory.toUpperCase()));
+      const uniqueFilteredFilms: Film[] = Array.from(new Set(filteredFilms));
+      this.filmsSubject.next(uniqueFilteredFilms);
+    }
+  }
+
+  getFilmsByCategory(category: FilmCategory): void {
+    this.filmCategory = category;
+    this.refreshFilmSubject();
   }
 
   shuffle(): void {
-    console.log('shuffling');
     this.filmsSubject.next(this.pojoFilm.getFilmSample());
-    console.log("films length " + this.films.length);
   }
 
 

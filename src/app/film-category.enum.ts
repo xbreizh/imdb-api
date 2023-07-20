@@ -1,6 +1,6 @@
 export enum FilmCategory {
+  All = 'All',
   Action = 'Action',
-  Drama = 'Drama',
   Comedy = 'Comedy',
-  None = 'None'
+  Drama = 'Drama'
 }
