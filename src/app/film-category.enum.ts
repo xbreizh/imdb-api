@@ -1,6 +1,6 @@
-export interface FilmCategory {
-  Action: boolean;
-  Drama: boolean;
-  Comedy: boolean;
-  None: boolean;
+export enum FilmCategory {
+  Action = 'Action',
+  Drama = 'Drama',
+  Comedy = 'Comedy',
+  None = 'None'
 }

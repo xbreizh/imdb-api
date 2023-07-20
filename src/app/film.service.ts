@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Film } from './film';
 import { FilmCategory } from './film-category.enum';
-import { FilmPojoComponent } from './fil-pojo/film-pojo.component';
+import { FilmPojoComponent } from './film-pojo/film-pojo.component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 

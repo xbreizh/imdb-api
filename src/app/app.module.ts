@@ -9,9 +9,10 @@ import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ShuffleComponent } from './shuffle/shuffle.component';
-import { FilmPojoComponent } from './fil-pojo/film-pojo.component';
+import { FilmPojoComponent } from './film-pojo/film-pojo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoComponent } from './logo/logo.component';
+import { CategoryButtonComponent } from './category-button/category-button.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LogoComponent } from './logo/logo.component';
     SearchbarComponent,
     ShuffleComponent,
     FilmPojoComponent,
-    LogoComponent
+    LogoComponent,
+    CategoryButtonComponent
   ],
   imports: [
     BrowserModule,

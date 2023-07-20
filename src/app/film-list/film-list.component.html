@@ -1,5 +1,5 @@
-<div class="row">
-  <div *ngFor="let film of films; let i = index" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+<div class="row top-buffer">
+  <div *ngFor="let film of films; let i = index" class="col-xl-2 col-lg-4 col-md-6 col-sm-12">
     <app-film-frame [film]="film" (click)="openFilmDetailPage(film.imdbID)" ></app-film-frame>
     <!-- This adds a new row every time we reach 6 items (max column length for the row) -->
     <!-- <div *ngIf="(i + 1) % 4 === 0" class="clearfix"></div> -->

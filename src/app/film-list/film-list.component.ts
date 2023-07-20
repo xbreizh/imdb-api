@@ -22,7 +22,7 @@ export class FilmListComponent implements OnInit {
     console.log('entering list');
     this.films = this._filmService.getFilms();
 
-    this._filmService.getFilmsObservable().subscribe(films => this.films = films)
+    this._filmService.getFilmsObservable().subscribe(films => this.films = films.slice(0, 18))
   }
 
   updateFilms(): void {

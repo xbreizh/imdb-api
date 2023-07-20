@@ -2,3 +2,20 @@
 //     width: 100%;
 //     height: 100px;
 // }
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.film-poster {
+    width: 150px;
+    /* Set the desired width */
+    height: 200px;
+    /* Set the desired height */
+    object-fit: cover;
+    /* Maintain aspect ratio and fill the container */
+}

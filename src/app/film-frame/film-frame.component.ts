@@ -15,7 +15,9 @@ export class FilmFrameComponent {
   dateFormat: string = 'dd-MM-yyyy';
   dialogRef!: MatDialogRef<FilmDetailPopupComponent>;
   popupOpened: boolean = false;
-  
+  showTitle: boolean = false;
+  showDescription: boolean = false;
+
   constructor(
     private datePipe: DatePipe,
     private dialog: MatDialog
@@ -23,23 +25,25 @@ export class FilmFrameComponent {
   }
 
 
-  getFormattedDate(date: Date | null): string {
-    if (date) {
-      return this.datePipe.transform(date, this.dateFormat) || '';
-    } else {
-      return '';
-    }
+  showElements(): void {
+    this.showTitle = true;
+    this.showDescription = true;
+  }
+
+  hideElements(): void {
+    this.showTitle = false;
+    this.showDescription = false;
   }
 
   openPopup(): void {
-    if (!this.popupOpened){
+    if (!this.popupOpened) {
       console.log('trying to open a popup');
       this.dialogRef = this.dialog.open(FilmDetailPopupComponent, {
         width: '80%',
         data: this.film
       });
       this.popupOpened = true;
-    } 
+    }
   }
 
   closePopup(): void {
@@ -47,6 +51,13 @@ export class FilmFrameComponent {
     if (this.dialogRef) {
       this.dialogRef.close();
     }
-    this.popupOpened = false;
+    //this.popupOpened = false;
+  }
+  over() {
+    console.log("Mouseover called");
+  }
+
+  out() {
+    console.log("Mouseout called");
   }
 }

@@ -1,7 +1,13 @@
-<p>film-detail works!</p>
-
-
 <h2>{{ film?.Title }}</h2>
-<img [src]="film?.Poster" alt="Film Poster" class="img-responsive">
-<p>Description: {{ film?.Plot }}</p>
-<p>Creation date: {{ film?.Year }}</p>
+<div class="row">
+    <img [src]="film?.Poster" alt="Film Poster" class="img-responsive col-2">
+    <p class="col-8">{{ film?.Plot }} <br><br>
+        Genre: {{ film?.Genre}}<br>
+        Actors: {{ film?.Actors}}<br>
+        Director: {{ film?.Director}}<br>
+        Creation year: {{ film?.Year }}<br>
+        Country: {{ film?.Country}}<br>
+        Rating: {{ film?.imdbRating}} / 10
+    </p>
+    <div class="col-2 blue"></div>
+</div>

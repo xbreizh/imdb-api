@@ -1,5 +1,9 @@
-
-    <h2>{{ film.Title }}</h2>
-    <img [src]="film.Poster" alt="Film Poster" class="img-responsive">
-    <p (mouseenter)="openPopup()" (mouseleave)="closePopup()">Description: {{ film.Plot }} </p>
-    <p>Creation date: {{ film.Year }}</p>
+<div class="row" (mouseout)="hideElements()">
+    <img [src]="film.Poster" alt="Film Poster" class="img-responsive col-12 film-poster" (mouseenter)="showElements()">
+</div>
+<div class="row " [class.show]="showTitle">
+    <h5 class="col-12">{{ film.Title }} <br> ({{ film.Year }})</h5>
+</div>
+<!-- <div class="row hidden" [class.show]="showDescription">
+    <p class="col-12" data-bs-toggle="tooltip">Description: {{ film.Plot }}</p>
+</div> -->
