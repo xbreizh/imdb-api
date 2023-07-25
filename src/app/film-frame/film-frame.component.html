@@ -2,7 +2,7 @@
     <img [src]="film.Poster" alt="Film Poster" class="img-responsive col-12 film-poster" (mouseenter)="showElements()">
 </div>
 <div class="row " [class.show]="showTitle">
-    <h5 class="col-12">{{ film.Title }} <br> ({{ film.Year }}) {{ film.imdbID}}</h5>
+    <h5 class="col-12">{{ film.Title }} <br> ({{ film.Year }})</h5>
 </div>
 <!-- <div class="row hidden" [class.show]="showDescription">
     <p class="col-12" data-bs-toggle="tooltip">Description: {{ film.Plot }}</p>

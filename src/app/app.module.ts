@@ -13,6 +13,11 @@ import { FilmPojoComponent } from './film-pojo/film-pojo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoComponent } from './logo/logo.component';
 import { CategoryButtonComponent } from './category-button/category-button.component';
+import { FilmFormComponent } from './film-form/film-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NewButtonComponent } from './new-button/new-button.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Add this line
+
 
 @NgModule({
   declarations: [
@@ -25,12 +30,16 @@ import { CategoryButtonComponent } from './category-button/category-button.compo
     ShuffleComponent,
     FilmPojoComponent,
     LogoComponent,
-    CategoryButtonComponent
+    CategoryButtonComponent,
+    FilmFormComponent,
+    NewButtonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     DatePipe

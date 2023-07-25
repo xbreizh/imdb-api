@@ -1,0 +1,71 @@
+<form [formGroup]="filmForm">
+  <div class="film-form">
+    <div class="form-wrapper" [@slideInOut]="activeSection">
+
+      <div class="form-section" *ngIf="activeSection === 1">
+        <div class="form-field">
+          <label for="Title">Title:</label>
+          <input type="text" id="Title" formControlName="Title" required>
+          <div *ngIf="isFieldInvalid('Title')" class="form-field-error">
+            Title is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section" *ngIf="activeSection === 2">
+        <div class="form-field">
+          <label for="Year">Year:</label>
+          <input type="text" id="Year" formControlName="Year" required>
+          <div *ngIf="isFieldInvalid('Year')" class="form-field-error">
+            Year is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section" *ngIf="activeSection === 3">
+        <div class="form-field">
+          <label for="Plot">Plot:</label>
+          <textarea id="Plot" formControlName="Plot" required></textarea>
+          <div *ngIf="isFieldInvalid('Plot')" class="form-field-error">
+            Plot is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section" *ngIf="activeSection === 4">
+        <div class="form-field">
+          <label for="Poster">Poster:</label>
+          <input type="text" id="Poster" formControlName="Poster" required>
+          <div *ngIf="isFieldInvalid('Poster')" class="form-field-error">
+            Poster is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5 (Submit Button) -->
+    <div class="form-section" *ngIf="activeSection === 5">
+      <h3>Form Data Summary:</h3>
+      <div *ngIf="formDataSummary">
+        <p><strong>Title:</strong> {{ formDataSummary.Title }}</p>
+        <p><strong>Year:</strong> {{ formDataSummary.Year }}</p>
+        <p><strong>Plot:</strong> {{ formDataSummary.Plot }}</p>
+        <p><strong>Poster:</strong> {{ formDataSummary.Poster }}</p>
+      </div>
+      <button type="submit" (click)="submitForm()">Submit</button>
+    </div>
+  </div>
+</form>
+
+<div class="form-navigation">
+  <div class="prev-button-container">
+    <button type="button" (click)="prevSection()" [hidden]="activeSection === 1" class="prev-button">
+      Previous
+    </button>
+  </div>
+  <div class="next-button-container">
+    <button type="button" (click)="nextSection()" [disabled]="activeSection === 5">
+      Next
+    </button>
+  </div>
+</div>
