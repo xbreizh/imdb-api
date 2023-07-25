@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { FilmService } from '../film.service';
+import { Film } from '../film';
+import { FilmBuilder } from '../film-builder';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-film-form',
@@ -22,8 +27,14 @@ export class FilmFormComponent implements OnInit {
   filmForm!: FormGroup;
   formDataSummary: any = {};
   activeSection: number = 1;
+  isFormSubmitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<FilmFormComponent>,
+    private router: Router,
+    private filmService: FilmService) {
   }
 
   ngOnInit() {
@@ -44,21 +55,21 @@ export class FilmFormComponent implements OnInit {
   nextSection() {
     const currentFormControl = this.getFormControlForSection(this.activeSection);
     currentFormControl.markAsTouched();
-  
+
     if (currentFormControl.valid) {
       // Store the current section's form data in formDataSummary
       this.formDataSummary = {
         ...this.formDataSummary,
         ...this.filmForm.value,
       };
-  
+
       this.activeSection++;
     } else {
       // Handle form validation errors
       console.log('Form is invalid.');
     }
   }
-  
+
   getFormControlForSection(section: number): AbstractControl {
     switch (section) {
       case 1:
@@ -73,17 +84,17 @@ export class FilmFormComponent implements OnInit {
         throw new Error('Invalid section number.');
     }
   }
-  
+
   isFieldInvalid(field: string): boolean {
     const control = this.getFormControlForSection(this.activeSection);
     return control ? control.invalid && control.touched : false;
   }
-  
 
   submitForm() {
     console.log('submitted ');
     // If the form is already submitted, return to prevent multiple submissions
-    if (this.formDataSummary) {
+
+    if (this.isFormSubmitted) {
       console.log('Form already submitted.');
       return;
     }
@@ -94,13 +105,35 @@ export class FilmFormComponent implements OnInit {
     console.log('Form Data Summary:', this.formDataSummary);
     // Submit the form or perform other actions as needed
 
+    const film: Film = this.createFilmObjectFromSubmittedForm();
+    console.log('film posted: ' + film);
+    const filmId: string = this.filmService.createFilm(film);
+    this.isFormSubmitted = true;
+
+    // Close the dialog
+    this.dialogRef.close();
+
     // Reset the form for the next section
     this.filmForm.reset();
+    this.isFormSubmitted = false;
     this.activeSection = 1;
 
     // Set the formDataSummary to null to prevent multiple submissions
     this.formDataSummary = null;
+    this.router.navigate(['/film', filmId]);
   }
+
+  createFilmObjectFromSubmittedForm(): Film {
+    const film: Film = new FilmBuilder()
+      .withTitle(this.formDataSummary.Title)
+      .withYear(this.formDataSummary.Year)
+      .withPlot(this.formDataSummary.Plot)
+      .withPoster(this.formDataSummary.Poster)
+      .build();
+
+    return film;
+  }
+
 
   onSubmit() {
     // throw new Error('Method not implemented.');

@@ -39,7 +39,7 @@ export class FilmService {
     if (this.filmCategory.toUpperCase() === 'ALL') {
       this.filmsSubject.next(this.films);
     } else {
-      const filteredFilms: Film[] = this.films.filter(film => film.Genre.toUpperCase().includes(this.filmCategory.toUpperCase()));
+      const filteredFilms: Film[] = this.films.filter(film => film.Genre?.toUpperCase().includes(this.filmCategory.toUpperCase()));
       const uniqueFilteredFilms: Film[] = Array.from(new Set(filteredFilms));
       this.filmsSubject.next(uniqueFilteredFilms);
     }
@@ -48,6 +48,11 @@ export class FilmService {
   getFilmsByCategory(category: FilmCategory): void {
     this.filmCategory = category;
     this.refreshFilmSubject();
+  }
+
+  createFilm(film: Film): string {
+    console.log('film reçu: ' + film.Title);
+    return "newId";
   }
 
   shuffle(): void {

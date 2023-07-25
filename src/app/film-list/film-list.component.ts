@@ -29,7 +29,10 @@ export class FilmListComponent implements OnInit {
    
   }
 
-  openFilmDetailPage(filmId: string) {
+  openFilmDetailPage(filmId: string|undefined) {
+    if(filmId == null){
+      this.router.navigate(['']);
+    }
     console.log('opening a new page');
     this.router.navigate(['/film', filmId]);
   }

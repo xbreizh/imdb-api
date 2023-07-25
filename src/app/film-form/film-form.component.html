@@ -52,20 +52,23 @@
         <p><strong>Plot:</strong> {{ formDataSummary.Plot }}</p>
         <p><strong>Poster:</strong> {{ formDataSummary.Poster }}</p>
       </div>
-      <button type="submit" (click)="submitForm()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Display the "Submit" button instead of the "Next" button on the last section -->
+  <div class="form-navigation">
+    <div class="prev-button-container">
+      <button type="button" (click)="prevSection()" [hidden]="activeSection === 1" class="prev-button">
+        Previous
+      </button>
+    </div>
+    <div class="next-button-container">
+      <button type="submit" *ngIf="activeSection < 5" (click)="nextSection()">
+        Next
+      </button>
+      <button type="submit" *ngIf="activeSection === 5" (click)="submitForm()">
+        Submit
+      </button>
     </div>
   </div>
 </form>
-
-<div class="form-navigation">
-  <div class="prev-button-container">
-    <button type="button" (click)="prevSection()" [hidden]="activeSection === 1" class="prev-button">
-      Previous
-    </button>
-  </div>
-  <div class="next-button-container">
-    <button type="button" (click)="nextSection()" [disabled]="activeSection === 5">
-      Next
-    </button>
-  </div>
-</div>

@@ -50,3 +50,11 @@ button:hover {
     /* Your existing styles for button:hover, if any */
     background-color: #0056b3;
 }
+
+/* Add some basic styles for the validation error messages */
+.form-field-error {
+    color: red;
+    font-size: 12px;
+}
+
+
