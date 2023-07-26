@@ -1,13 +1,11 @@
 <div class="btn-group">
-    <!-- <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ categoryService.selectedCategory$ | async }}
-    </button>
+    <!-- searchbar.component.html -->
+    <div class="search-bar-container">
+        <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search by film name">
 
-    <ul class="dropdown-menu">
-        <li *ngFor="let category of categories">
-            <a class="dropdown-item" (click)="selectCategory(category)" *ngIf="category !== 'None'">
-                {{category}} 
-            </a>
-        </li>
-    </ul> -->
+        <div class="search-results-container-overlay" *ngIf="searchResults.length > 0 && searchTerm">
+            <!-- Pass the resultClick event to the parent component -->
+            <app-search-result [films]="searchResults" (resultClick)="onResultClick($event)"></app-search-result>
+        </div>
+    </div>
 </div>

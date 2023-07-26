@@ -16,7 +16,9 @@ import { CategoryButtonComponent } from './category-button/category-button.compo
 import { FilmFormComponent } from './film-form/film-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewButtonComponent } from './new-button/new-button.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Add this line
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel to work
+import { SearchResultComponent } from './search-result/search-result.component'; // Add this line
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     CategoryButtonComponent,
     FilmFormComponent,
     NewButtonComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     DatePipe

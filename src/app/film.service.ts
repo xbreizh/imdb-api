@@ -31,10 +31,6 @@ export class FilmService {
     return film;
   }
 
-  getFilmsByKeyWord(keyword: string) {
-
-  }
-
   refreshFilmSubject(){
     if (this.filmCategory.toUpperCase() === 'ALL') {
       this.filmsSubject.next(this.films);
@@ -66,4 +62,12 @@ export class FilmService {
   getFilmsObservable(): Observable<Film[]> {
     return this.filmsSubject.asObservable();
   }
+
+  getFilmsByKeyWord(searchTerm: string): Film[] {
+    if (searchTerm === undefined) {
+      return []; // Return an empty array or handle it as needed
+    }
+    return this.films.filter(film => film.Title?.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
+
 }

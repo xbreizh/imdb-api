@@ -1,0 +1,14 @@
+/* styles.css or your component's SCSS file */
+.search-bar-container {
+    position: relative;
+}
+
+.search-results-container-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 1000;
+    /* Add any other styling you want for the container */
+}

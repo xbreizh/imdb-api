@@ -1,0 +1,8 @@
+<!-- search-results.component.html -->
+<div class="search-results-container">
+    <ul class="search-results-list">
+        <li *ngFor="let film of films" (click)="onResultClick(film)">
+            {{ film.Title }}
+        </li>
+    </ul>
+</div>
