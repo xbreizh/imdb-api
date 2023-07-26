@@ -1,5 +1,4 @@
 .film-form {
-    /* Your existing styles for film-form, if any */
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -8,7 +7,6 @@
 }
 
 .form-wrapper {
-    /* Your existing styles for form-wrapper, if any */
     display: flex;
     flex-wrap: nowrap;
     transition: transform 0.3s ease-in-out;
@@ -16,27 +14,20 @@
 }
 
 .form-section {
-    /* Add margin to create space between sections */
     margin: 10px 0;
 }
 
 .form-field {
-    /* Your existing styles for form-field, if any */
     margin-bottom: 10px;
 }
 
 .form-navigation {
-    /* Your existing styles for form-navigation, if any */
     display: flex;
     justify-content: space-between;
-    /* Use space-between to align buttons at both ends */
     gap: 1rem;
-    /* Add some spacing between the buttons */
     margin-top: 20px;
-    /* Add some top margin to separate the buttons from the form */
 }
 
-/* Styles for both buttons (Previous and Next) */
 button {
     background-color: #007bff;
     color: #fff;
@@ -47,14 +38,10 @@ button {
 }
 
 button:hover {
-    /* Your existing styles for button:hover, if any */
     background-color: #0056b3;
 }
 
-/* Add some basic styles for the validation error messages */
 .form-field-error {
     color: red;
     font-size: 12px;
 }
-
-
