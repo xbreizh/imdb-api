@@ -45,12 +45,12 @@
 
     <!-- Section 5 (Submit Button) -->
     <div class="form-section" *ngIf="activeSection === 5">
-      <h3>Form Data Summary:</h3>
+      <h3>New film:</h3>
       <div *ngIf="formDataSummary">
         <p><strong>Title:</strong> {{ formDataSummary.Title }}</p>
         <p><strong>Year:</strong> {{ formDataSummary.Year }}</p>
         <p><strong>Plot:</strong> {{ formDataSummary.Plot }}</p>
-        <p><strong>Poster:</strong> {{ formDataSummary.Poster }}</p>
+        <p><img src="{{ formDataSummary.Poster }}" alt="Film Poster" class="img-fluid"></p>
       </div>
     </div>
   </div>
