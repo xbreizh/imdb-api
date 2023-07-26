@@ -11,7 +11,7 @@ export class DialogService {
 
   openFilmFormDialog() {
     this.dialog.open(FilmFormComponent, {
-      width: '60%', // Set the width of the dialog
+      width: '30%', 
     });
   }
 }
