@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { FilmCategory } from '../film-category.enum';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-searchbar',

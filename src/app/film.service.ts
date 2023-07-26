@@ -52,7 +52,10 @@ export class FilmService {
 
   createFilm(film: Film): string {
     console.log('film reçu: ' + film.Title);
-    return "newId";
+    const newId = "newId";
+    film.imdbID = newId;
+    this.films.push(film);
+    return newId;
   }
 
   shuffle(): void {
