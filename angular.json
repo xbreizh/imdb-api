@@ -20,6 +20,7 @@
             "outputPath": "dist/imdb-api",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "baseHref": "/imdb-api/",
             "polyfills": [
               "zone.js"
             ],
