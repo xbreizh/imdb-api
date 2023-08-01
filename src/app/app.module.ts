@@ -6,6 +6,7 @@ import { FilmFrameComponent } from './film-frame/film-frame.component';
 import { FilmListComponent } from './film-list/film-list.component';
 import { FilmDetailComponent } from './film-detail/film-detail.component';
 import { ActorDetailComponent } from './actor-detail/actor-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ShuffleComponent } from './shuffle/shuffle.component';
@@ -17,8 +18,8 @@ import { FilmFormComponent } from './film-form/film-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewButtonComponent } from './new-button/new-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel to work
-import { SearchResultComponent } from './search-result/search-result.component'; // Add this line
+import { FormsModule } from '@angular/forms';
+import { SearchResultComponent } from './search-result/search-result.component'; 
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
     MatDialogModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     DatePipe
