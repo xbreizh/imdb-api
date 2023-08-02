@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ShuffleComponent } from './shuffle/shuffle.component';
-import { FilmPojoComponent } from './film-pojo/film-pojo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoComponent } from './logo/logo.component';
 import { CategoryButtonComponent } from './category-button/category-button.component';
@@ -31,7 +30,6 @@ import { SearchResultComponent } from './search-result/search-result.component';
     ActorDetailComponent,
     SearchbarComponent,
     ShuffleComponent,
-    FilmPojoComponent,
     LogoComponent,
     CategoryButtonComponent,
     FilmFormComponent,

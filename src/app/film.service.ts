@@ -3,7 +3,6 @@ import { Film } from './film';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { FilmCategory } from './film-category.enum';
-import { FilmPojoComponent } from './film-pojo/film-pojo.component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -15,16 +14,21 @@ export class FilmService {
   private filmsSubject: BehaviorSubject<Film[]> = new BehaviorSubject<Film[]>([]);
   private filmCategory: FilmCategory = FilmCategory.All;
   private filmUrl: string = "http://localhost:8000";
+  private jsonFileUrl: string = 'assets/films.json';
 
   constructor(
-    private httpClient: HttpClient,
-    private pojoFilm: FilmPojoComponent
+    private httpClient: HttpClient
   ) {
     this.initializeFilms();
   }
 
   private initializeFilms(): void {
-    this.films = this.pojoFilm.getFilms();
+    this.films = [];
+
+    this.httpClient.get<Film[]>(this.jsonFileUrl).subscribe(films => {
+      this.films = films;
+      this.filmsSubject.next(this.films);
+    });
     this.filmsSubject.next(this.films);
     this.testWebService();
   }
@@ -79,7 +83,7 @@ export class FilmService {
   }
 
   shuffle(): void {
-    this.filmsSubject.next(this.pojoFilm.getFilmSample());
+    this.filmsSubject.next(this.films.slice(0,1));
   }
 
 
