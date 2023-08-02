@@ -83,8 +83,15 @@ export class FilmService {
   }
 
   shuffle(): void {
-    this.filmsSubject.next(this.films.slice(0,1));
+    if (this.films.length === 0) {
+      return; // No need to shuffle an empty array
+    }
+    
+    const randomIndex = Math.floor(Math.random() * this.films.length);
+  
+    this.filmsSubject.next([this.films[randomIndex]]);
   }
+  
 
 
   getFilmsObservable(): Observable<Film[]> {
