@@ -18,7 +18,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NewButtonComponent } from './new-button/new-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { SearchResultComponent } from './search-result/search-result.component'; 
+import { SearchResultComponent } from './search-result/search-result.component';
+import { FooterComponent } from './footer/footer.component';
+import { CountryComponent } from './country/country.component';
+import { RatingComponent } from './rating/rating.component';
+import { DateSlideComponent } from './date-slide/date-slide.component'; 
 
 
 @NgModule({
@@ -35,6 +39,10 @@ import { SearchResultComponent } from './search-result/search-result.component';
     FilmFormComponent,
     NewButtonComponent,
     SearchResultComponent,
+    FooterComponent,
+    CountryComponent,
+    RatingComponent,
+    DateSlideComponent,
   ],
   imports: [
     BrowserModule,
