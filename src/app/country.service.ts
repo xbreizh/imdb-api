@@ -10,6 +10,6 @@ export class CountryService {
   constructor(private http: HttpClient) {}
 
   getCountries(): Observable<any[]> {
-    return this.http.get<any[]>('assets/countries.json'); // Update the path
+    return this.http.get<any[]>('assets/countries.json'); 
   }
 }

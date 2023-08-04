@@ -15,7 +15,7 @@ export class CategoryButtonComponent {
     this._filmService = _filmService;
   }
   filmCategories: string[] = this.enumToArray(FilmCategory);
-  selectedCategories: Set<string> = new Set<string>(); // Track selected categories
+  selectedCategories: Set<string> = new Set<string>(); 
 
 
   filterByCategory(category: string) {

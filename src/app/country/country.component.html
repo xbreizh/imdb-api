@@ -1,5 +1,5 @@
 <mat-form-field>
-    <mat-label>Select Country</mat-label>
+    <mat-label>Country</mat-label>
     <mat-select [(value)]="selectedCountry" (selectionChange)="onCountryChange()">
         <mat-option *ngFor="let country of countries" [value]="country.code">
             {{ country.name }}
