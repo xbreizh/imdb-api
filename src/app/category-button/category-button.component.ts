@@ -4,30 +4,38 @@ import { FilmService } from '../film.service';
 
 @Component({
   selector: 'app-category-button',
-  templateUrl: './category-button.component.html'
+  templateUrl: './category-button.component.html',
+  styleUrls: ['./category-button.component.scss']
 })
 export class CategoryButtonComponent {
 
   private _filmService: FilmService;
 
-  constructor(_filmService: FilmService){
+  constructor(_filmService: FilmService) {
     this._filmService = _filmService;
   }
-  filmCategories: string[] = enumToArray(FilmCategory); 
+  filmCategories: string[] = this.enumToArray(FilmCategory);
+  selectedCategories: Set<string> = new Set<string>(); // Track selected categories
 
-  filterByCategory(category: string){
+
+  filterByCategory(category: string) {
     const categoryEnumValue = FilmCategory[category as keyof typeof FilmCategory];
-    
-    // Check if the category is a valid value from the FilmCategory enum
-    if (categoryEnumValue) {
-      this._filmService.getFilmsByCategory(categoryEnumValue);
-    } else {
-      // If the category is not a valid enum value, pass "All" to get all films
-      this._filmService.getFilmsByCategory(FilmCategory.All);
-    }
-  }
-}
 
-function enumToArray(enumObject: any): string[] {
-  return Object.keys(enumObject).map(key => enumObject[key]);
+    if (this.selectedCategories.has(category)) {
+      this.selectedCategories.delete(category);
+    } else {
+      this.selectedCategories.add(category);
+    }
+
+    this._filmService.updateGenre(Array.from(this.selectedCategories));
+  }
+
+  isCategorySelected(category: string): boolean {
+    return this.selectedCategories.has(category);
+  }
+
+  enumToArray(enumObject: any): string[] {
+    return Object.keys(enumObject).map(key => enumObject[key]);
+  }
+
 }
