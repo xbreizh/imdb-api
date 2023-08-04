@@ -17,14 +17,14 @@ export class FilmService {
   private filmCategory: FilmCategory = FilmCategory.All;
   private filmWebServiceUrl: string = "http://localhost:8081/";
   private jsonFileUrl: string = 'assets/films.json';
-  private selectedCountry: string = '';
-  private searchCriteria: SearchCriteria = {
+  private defaultSearchCriteria: SearchCriteria = {
     filmId: '',
     genre: [],
     firstDate: '',
     secondDate: '',
-    country: 'All'
+    country: ''
   }
+  private searchCriteria: SearchCriteria = this.defaultSearchCriteria;
 
 
   constructor(
@@ -34,8 +34,6 @@ export class FilmService {
       if (isServiceUp) {
         console.log('service is up');
 
-        this.searchCriteria.country = 'United States'; // Set your default search criteria here
-
         this.searchCriteriaSubject.subscribe(searchCriteria => {
           this.getFilmsWithSearchCriteria(searchCriteria).subscribe(
             films => {
@@ -44,7 +42,6 @@ export class FilmService {
               console.log('Retrieved films:', films);
             },
             error => {
-              // Handle errors here
               console.error('Error retrieving films:', error);
             }
           );
@@ -58,33 +55,25 @@ export class FilmService {
 
   private searchCriteriaSubject: BehaviorSubject<SearchCriteria> = new BehaviorSubject<SearchCriteria>(this.searchCriteria);
 
+  resetSearchCriteria(){
+    this.searchCriteria = this.defaultSearchCriteria;
+    this.searchCriteriaSubject.next(this.searchCriteria);
+  }
+
   updateCountry(country: string) {
     this.searchCriteria.country = country;
+    this.searchCriteriaSubject.next(this.searchCriteria);
     this.refreshFilmSubject();
-    this.searchCriteriaSubject.next(this.searchCriteria); // Notify subscribers about the change
   }
-  
 
-  private getSearchCriteria(): SearchCriteria {
-    const searchCriteria: SearchCriteria = {
-      filmId: 'exampleFilmId',
-      genre: ['Drama', 'Action'],
-      firstDate: '2023-01-01',
-      secondDate: '2023-12-31',
-      country: this.selectedCountry
-    }
-    return searchCriteria;
+  updateGenre(genre: string[]) {
+    this.searchCriteria.genre = genre;
+    this.searchCriteriaSubject.next(this.searchCriteria);
+    this.refreshFilmSubject();
   }
 
   private initializeFilmsFromLocalFile(): void {
     this.getFilmsFromLocalFile().subscribe(films => {
-      this.films = films;
-      this.filmsSubject.next(this.films);
-    });
-  }
-
-  private initializeFilmsFromWebService(): void {
-    this.getFilmsFromWebService().subscribe(films => {
       this.films = films;
       this.filmsSubject.next(this.films);
     });
@@ -96,7 +85,6 @@ export class FilmService {
     );
   }
 
-  // Function to call the web service and get the JSON data
   getFilmsFromWebService(): Observable<Film[]> {
     const keyword: string = 'best';
     return this.httpClient.get<Film[]>(this.filmWebServiceUrl + 'movies?keyword=' + keyword).pipe(
@@ -125,8 +113,8 @@ export class FilmService {
     const url = this.filmWebServiceUrl + 'test';
 
     return this.httpClient.get<string>(url).pipe(
-      map(() => true), // If the request is successful, return true
-      catchError(() => of(false)) // If there's an error, return false
+      map(() => true), 
+      catchError(() => of(false)) 
     );
   }
 
@@ -147,7 +135,7 @@ export class FilmService {
       const uniqueFilteredFilms: Film[] = Array.from(new Set(filteredFilms));
       this.filmsSubject.next(uniqueFilteredFilms);
     }
-    console.log('country selected: ' + this.searchCriteria.country);
+    console.log('criteria ' + this.searchCriteria.country);
   }
 
   getFilmsByCategory(category: FilmCategory): void {
@@ -165,7 +153,7 @@ export class FilmService {
 
   shuffle(): void {
     if (this.films.length === 0) {
-      return; // No need to shuffle an empty array
+      return;
     }
 
     const randomIndex = Math.floor(Math.random() * this.films.length);
