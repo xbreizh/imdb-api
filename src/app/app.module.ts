@@ -23,6 +23,10 @@ import { FooterComponent } from './footer/footer.component';
 import { CountryComponent } from './country/country.component';
 import { RatingComponent } from './rating/rating.component';
 import { DateSlideComponent } from './date-slide/date-slide.component'; 
+import { MatSliderModule } from '@angular/material/slider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 @NgModule({
@@ -45,6 +49,9 @@ import { DateSlideComponent } from './date-slide/date-slide.component';
     DateSlideComponent,
   ],
   imports: [
+    MatSliderModule,
+    MatFormFieldModule,
+    MatSelectModule,
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,

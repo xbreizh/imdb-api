@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Film } from './film';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
 import { FilmCategory } from './film-category.enum';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs';
+import { SearchCriteria } from './search-criteria';
 
 @Injectable({
   providedIn: 'root'
@@ -13,43 +15,106 @@ export class FilmService {
   private films: Film[] = [];
   private filmsSubject: BehaviorSubject<Film[]> = new BehaviorSubject<Film[]>([]);
   private filmCategory: FilmCategory = FilmCategory.All;
-  private filmUrl: string = "http://localhost:8000";
+  private filmWebServiceUrl: string = "http://localhost:8081/";
   private jsonFileUrl: string = 'assets/films.json';
+  private selectedCountry: string = '';
+
 
   constructor(
     private httpClient: HttpClient
   ) {
-    this.initializeFilms();
+    this.testWebService().subscribe(isServiceUp => {
+      if (isServiceUp) {
+        console.log('service is up');
+        const searchCriteria: SearchCriteria = this.getSearchCriteria();
+        
+        this.getFilmsWithSearchCriteria(searchCriteria).subscribe(
+          films => {
+            this.films = films;
+            this.filmsSubject.next(films);
+            console.log('Retrieved films:', films);
+          },
+          error => {
+            // Handle errors here
+            console.error('Error retrieving films:', error);
+          }
+        );
+      } else {
+        console.log('service is down');
+        this.initializeFilmsFromLocalFile();
+      }
+    });
+  }
+  
+
+  private getSearchCriteria(): SearchCriteria {
+    const searchCriteria: SearchCriteria = {
+      filmId: 'exampleFilmId',
+      genre: ['Drama', 'Action'],
+      firstDate: '2023-01-01',
+      secondDate: '2023-12-31',
+      country: 'United States'
+    }
+    return searchCriteria;
   }
 
-  private initializeFilms(): void {
-    this.films = [];
-
-    this.httpClient.get<Film[]>(this.jsonFileUrl).subscribe(films => {
+  private initializeFilmsFromLocalFile(): void {
+    this.getFilmsFromLocalFile().subscribe(films => {
       this.films = films;
       this.filmsSubject.next(this.films);
     });
-    this.filmsSubject.next(this.films);
-    this.testWebService();
   }
 
-  // Function to call the web service and get the JSON data
-  getFilmsFromWebService(): Observable<Film[]> {
-    return this.httpClient.get<Film[]>(this.filmUrl).pipe(
+  private initializeFilmsFromWebService(): void {
+    this.getFilmsFromWebService().subscribe(films => {
+      this.films = films;
+      this.filmsSubject.next(this.films);
+    });
+  }
+
+  getFilmsFromLocalFile(): Observable<Film[]> {
+    return this.httpClient.get<Film[]>(this.jsonFileUrl).pipe(
       map((response: any) => response as Film[])
     );
   }
 
-  testWebService(){
-    const url = "http://localhost:8081/test";
-    const response: Observable<String>= this.httpClient.get<String>(url).pipe(
-      map((response: any) => response as String)
+  // Function to call the web service and get the JSON data
+  getFilmsFromWebService(): Observable<Film[]> {
+    const keyword: string = 'best';
+    return this.httpClient.get<Film[]>(this.filmWebServiceUrl + 'movies?keyword=' + keyword).pipe(
+      map((response: any) => response as Film[])
     );
-    response.subscribe((value: String) => {
-      console.log('Received value:', value);
-    });
   }
 
+  getFilmsWithSearchCriteria(criteria: SearchCriteria): Observable<Film[]> {
+    const url = `${this.filmWebServiceUrl}search`;
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    console.log('trying to get criteria stuff ' + url + "\n" + JSON.stringify(criteria));
+    return this.httpClient.post<Film[]>(url, criteria, { headers }).pipe(
+      catchError(error => {
+        console.error('Error in getFilmsWithSearchCriteria:', error);
+        throw error;
+      })
+    );
+  }
+
+
+  testWebService(): Observable<boolean> {
+    const url = this.filmWebServiceUrl + 'test';
+
+    return this.httpClient.get<string>(url).pipe(
+      map(() => true), // If the request is successful, return true
+      catchError(() => of(false)) // If there's an error, return false
+    );
+  }
+
+  updateCountry(country: string) {
+    console.log('country updated in film service ' + country);
+  }
   getFilms(): Film[] {
     return this.films;
   }
@@ -67,6 +132,7 @@ export class FilmService {
       const uniqueFilteredFilms: Film[] = Array.from(new Set(filteredFilms));
       this.filmsSubject.next(uniqueFilteredFilms);
     }
+    console.log('country selected: ' + this.selectedCountry);
   }
 
   getFilmsByCategory(category: FilmCategory): void {
@@ -86,12 +152,12 @@ export class FilmService {
     if (this.films.length === 0) {
       return; // No need to shuffle an empty array
     }
-    
+
     const randomIndex = Math.floor(Math.random() * this.films.length);
-  
+
     this.filmsSubject.next([this.films[randomIndex]]);
   }
-  
+
 
 
   getFilmsObservable(): Observable<Film[]> {
