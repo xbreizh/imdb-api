@@ -18,6 +18,13 @@ export class FilmService {
   private filmWebServiceUrl: string = "http://localhost:8081/";
   private jsonFileUrl: string = 'assets/films.json';
   private selectedCountry: string = '';
+  private searchCriteria: SearchCriteria = {
+    filmId: '',
+    genre: [],
+    firstDate: '',
+    secondDate: '',
+    country: 'All'
+  }
 
 
   constructor(
@@ -26,24 +33,35 @@ export class FilmService {
     this.testWebService().subscribe(isServiceUp => {
       if (isServiceUp) {
         console.log('service is up');
-        const searchCriteria: SearchCriteria = this.getSearchCriteria();
-        
-        this.getFilmsWithSearchCriteria(searchCriteria).subscribe(
-          films => {
-            this.films = films;
-            this.filmsSubject.next(films);
-            console.log('Retrieved films:', films);
-          },
-          error => {
-            // Handle errors here
-            console.error('Error retrieving films:', error);
-          }
-        );
+
+        this.searchCriteria.country = 'United States'; // Set your default search criteria here
+
+        this.searchCriteriaSubject.subscribe(searchCriteria => {
+          this.getFilmsWithSearchCriteria(searchCriteria).subscribe(
+            films => {
+              this.films = films;
+              this.filmsSubject.next(films);
+              console.log('Retrieved films:', films);
+            },
+            error => {
+              // Handle errors here
+              console.error('Error retrieving films:', error);
+            }
+          );
+        });
       } else {
         console.log('service is down');
         this.initializeFilmsFromLocalFile();
       }
     });
+  }
+
+  private searchCriteriaSubject: BehaviorSubject<SearchCriteria> = new BehaviorSubject<SearchCriteria>(this.searchCriteria);
+
+  updateCountry(country: string) {
+    this.searchCriteria.country = country;
+    this.refreshFilmSubject();
+    this.searchCriteriaSubject.next(this.searchCriteria); // Notify subscribers about the change
   }
   
 
@@ -53,7 +71,7 @@ export class FilmService {
       genre: ['Drama', 'Action'],
       firstDate: '2023-01-01',
       secondDate: '2023-12-31',
-      country: 'United States'
+      country: this.selectedCountry
     }
     return searchCriteria;
   }
@@ -112,9 +130,6 @@ export class FilmService {
     );
   }
 
-  updateCountry(country: string) {
-    console.log('country updated in film service ' + country);
-  }
   getFilms(): Film[] {
     return this.films;
   }
@@ -132,7 +147,7 @@ export class FilmService {
       const uniqueFilteredFilms: Film[] = Array.from(new Set(filteredFilms));
       this.filmsSubject.next(uniqueFilteredFilms);
     }
-    console.log('country selected: ' + this.selectedCountry);
+    console.log('country selected: ' + this.searchCriteria.country);
   }
 
   getFilmsByCategory(category: FilmCategory): void {
