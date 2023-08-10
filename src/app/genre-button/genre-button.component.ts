@@ -15,20 +15,28 @@ export class GenreButtonComponent {
     this._filmService = _filmService;
   }
   filmGenres: string[] = this.enumToArray(FilmGenre);
-  selectedGenres: Set<string> = new Set<string>(); 
+  selectedGenres: Set<string> = new Set<string>();
 
 
   filterByGenre(genre: string) {
-    const genreEnumValue = FilmGenre[genre as keyof typeof FilmGenre];
-
-    if (this.selectedGenres.has(genre)) {
-      this.selectedGenres.delete(genre);
+    if (genre === 'All') {
+      this.selectedGenres.clear();
+      this.selectedGenres.add('All'); // Add 'All' to selected genres
     } else {
-      this.selectedGenres.add(genre);
+      if (this.selectedGenres.has('All')) {
+        this.selectedGenres.delete('All'); // Remove 'All' if previously selected
+      }
+  
+      if (this.selectedGenres.has(genre)) {
+        this.selectedGenres.delete(genre);
+      } else {
+        this.selectedGenres.add(genre);
+      }
     }
-
-    this._filmService.updateGenre(Array.from(this.selectedGenres));
+  
+    this._filmService.updateGenre([...this.selectedGenres]);
   }
+  
 
   isGenreSelected(genre: string): boolean {
     return this.selectedGenres.has(genre);
