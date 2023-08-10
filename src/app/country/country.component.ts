@@ -24,6 +24,7 @@ export class CountryComponent implements OnInit{
 
   onCountryChange() {
     this.countryChanged.emit(this.selectedCountry);
+    console.log('selected country ' + this.selectedCountry);
     this.filmService.updateCountry(this.selectedCountry);
   }
 
