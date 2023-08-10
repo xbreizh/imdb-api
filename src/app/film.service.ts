@@ -18,7 +18,6 @@ export class FilmService {
   private filmWebServiceUrl: string = "http://localhost:8081/";
   private jsonFileUrl: string = 'assets/films.json';
   private defaultSearchCriteria: SearchCriteria = {
-    filmId: '',
     genre: [],
     firstDate: '',
     secondDate: '',
@@ -68,6 +67,7 @@ export class FilmService {
 
   updateGenre(genre: string[]) {
     this.searchCriteria.genre = genre;
+    console.log('getting genre ' + genre);
     this.searchCriteriaSubject.next(this.searchCriteria);
     this.refreshFilmSubject();
   }
