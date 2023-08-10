@@ -12,7 +12,7 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ShuffleComponent } from './shuffle/shuffle.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoComponent } from './logo/logo.component';
-import { CategoryButtonComponent } from './category-button/category-button.component';
+import { GenreButtonComponent } from './genre-button/genre-button.component';
 import { FilmFormComponent } from './film-form/film-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewButtonComponent } from './new-button/new-button.component';
@@ -39,7 +39,7 @@ import {MatSelectModule} from '@angular/material/select';
     SearchbarComponent,
     ShuffleComponent,
     LogoComponent,
-    CategoryButtonComponent,
+    GenreButtonComponent,
     FilmFormComponent,
     NewButtonComponent,
     SearchResultComponent,

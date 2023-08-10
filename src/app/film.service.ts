@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Film } from './film';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { FilmCategory } from './film-category.enum';
+import { FilmGenre } from './film-genre.enum';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs';
@@ -14,7 +14,7 @@ import { SearchCriteria } from './search-criteria';
 export class FilmService {
   private films: Film[] = [];
   private filmsSubject: BehaviorSubject<Film[]> = new BehaviorSubject<Film[]>([]);
-  private filmCategory: FilmCategory = FilmCategory.All;
+  private filmGenre: FilmGenre = FilmGenre.All;
   private filmWebServiceUrl: string = "http://localhost:8081/";
   private jsonFileUrl: string = 'assets/films.json';
   private defaultSearchCriteria: SearchCriteria = {
@@ -128,18 +128,18 @@ export class FilmService {
   }
 
   refreshFilmSubject() {
-    if (this.filmCategory.toUpperCase() === 'ALL') {
+    if (this.filmGenre.toUpperCase() === 'ALL') {
       this.filmsSubject.next(this.films);
     } else {
-      const filteredFilms: Film[] = this.films.filter(film => film.Genre?.toUpperCase().includes(this.filmCategory.toUpperCase()));
+      const filteredFilms: Film[] = this.films.filter(film => film.Genre?.toUpperCase().includes(this.filmGenre.toUpperCase()));
       const uniqueFilteredFilms: Film[] = Array.from(new Set(filteredFilms));
       this.filmsSubject.next(uniqueFilteredFilms);
     }
     console.log('criteria ' + this.searchCriteria.country);
   }
 
-  getFilmsByCategory(category: FilmCategory): void {
-    this.filmCategory = category;
+  getFilmsByGenre(genre: FilmGenre): void {
+    this.filmGenre = genre;
     this.refreshFilmSubject();
   }
 

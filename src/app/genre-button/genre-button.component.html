@@ -1,0 +1,10 @@
+<div class="genre-buttons">
+  <button
+    *ngFor="let genre of filmGenres"
+    style="display: block; margin-bottom: 8px;"
+    (click)="filterByGenre(genre)"
+    [ngClass]="{ 'selected': isGenreSelected(genre) }" 
+  >
+    {{ genre }} <span *ngIf="isGenreSelected(genre)"></span>
+  </button>
+</div>

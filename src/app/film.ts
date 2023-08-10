@@ -1,4 +1,4 @@
-import { FilmCategory } from "./film-category.enum";
+import { FilmGenre } from "./film-genre.enum";
 
 export interface Film {
   dvd?: string;
