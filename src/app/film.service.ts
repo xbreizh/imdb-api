@@ -77,11 +77,35 @@ export class FilmService {
       this.films = films;
       this.filmsSubject.next(this.films);
     });
+    this.getAdditionalData().subscribe(films => {
+      this.films = films;
+      this.filmsSubject.next(this.films);
+    });
   }
 
   getFilmsFromLocalFile(): Observable<Film[]> {
+    // Load minimal data first
     return this.httpClient.get<Film[]>(this.jsonFileUrl).pipe(
-      map((response: any) => response as Film[])
+      map((response: any) => response as Film[]),
+      catchError(error => {
+        console.error('Error loading essential data:', error);
+        return of([]); // Return an empty array or handle it as needed
+      })
+    );
+  }
+
+
+
+  getAdditionalData(): Observable<Film[]> {
+    // Load additional data when needed
+    // You can adjust the URL or logic for your specific use case
+    // For example: 'assets/films_additional.json'
+    return this.httpClient.get<Film[]>('assets/films_additional.json').pipe(
+      map((response: any) => response as Film[]),
+      catchError(error => {
+        console.error('Error loading additional data:', error);
+        return of([]); // Return an empty array or handle it as needed
+      })
     );
   }
 

@@ -1,43 +1,124 @@
-[
-    {
-        "dvd": "09 Jan 2014",
-        "Title": "My Best Friend's Wedding",
-        "Year": "1997",
-        "Rated": "PG-13",
-        "Released": "20 Jun 1997",
-        "Runtime": "105 min",
-        "Genre": "Comedy, Drama, Romance",
-        "Director": "P.J. Hogan",
-        "Writer": "Ron Bass",
-        "Actors": "Julia Roberts, Dermot Mulroney, Cameron Diaz",
-        "Plot": "When a woman's long-time friend reveals he's engaged, she realizes she loves him herself and sets out to get him, with only days before the wedding.",
-        "Language": "English, French, Italian",
-        "Country": "United States",
-        "Awards": "Nominated for 1 Oscar. 12 wins & 24 nominations total",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BMzRiMGE2MmMtM2RhMy00OWNiLTljYTktOThmMmE1YjY1NjYyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-        "Ratings": [
-            {
-                "Source": "Internet Movie Database",
-                "Value": "6.3/10"
-            },
-            {
-                "Source": "Rotten Tomatoes",
-                "Value": "74%"
-            },
-            {
-                "Source": "Metacritic",
-                "Value": "50/100"
-            }
-        ],
-        "Metascore": "50",
-        "imdbRating": "6.3",
-        "imdbVotes": "148,456",
-        "imdbID": "tt0119738",
-        "Type": "movie",
-        "DVD": "09 Jan 2014",
-        "BoxOffice": "$127,120,029",
-        "Production": "N/A",
-        "Website": "N/A",
-        "Response": "True"
-    }
+[{
+    "dvd": "01 Dec 2021",
+    "Title": "The Power of the Dog",
+    "Year": "2021",
+    "Rated": "R",
+    "Released": "01 Dec 2021",
+    "Runtime": "126 min",
+    "Genre": "Drama, Western",
+    "Director": "Jane Campion",
+    "Writer": "Jane Campion, Thomas Savage",
+    "Actors": "Benedict Cumberbatch, Kirsten Dunst, Jesse Plemons",
+    "Plot": "Charismatic rancher Phil Burbank inspires fear and awe in those around him. When his brother brings home a new wife and her son, Phil torments them until he finds himself exposed to the possibility of love.",
+    "Language": "English",
+    "Country": "New Zealand, United Kingdom, Canada, Australia",
+    "Awards": "Won 1 Oscar. 275 wins & 313 nominations total",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BZGRhYjE2NWUtN2FkNy00NGI3LTkxYWMtMDk4Yjg5ZjI3MWI2XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX300.jpg",
+    "Ratings": [
+        {
+            "Source": "Internet Movie Database",
+            "Value": "6.8/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "94%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "89/100"
+        }
+    ],
+    "Metascore": "89",
+    "imdbRating": "6.8",
+    "imdbVotes": "185,282",
+    "imdbID": "tt10293406",
+    "Type": "movie",
+    "DVD": "01 Dec 2021",
+    "BoxOffice": "N/A",
+    "Production": "N/A",
+    "Website": "N/A",
+    "Response": "True"
+},
+{
+    "dvd": "13 Jun 2017",
+    "Title": "Power Rangers",
+    "Year": "2017",
+    "Rated": "PG-13",
+    "Released": "24 Mar 2017",
+    "Runtime": "124 min",
+    "Genre": "Action, Adventure, Fantasy",
+    "Director": "Dean Israelite",
+    "Writer": "John Gatins, Matt Sazama, Burk Sharpless",
+    "Actors": "Dacre Montgomery, Naomi Scott, RJ Cyler",
+    "Plot": "When Earth is on the verge of an alien invasion, five teenagers, who are infused with superhuman abilities, must harness their newfound powers to battle this threat - as the Power Rangers.",
+    "Language": "English, Mandarin",
+    "Country": "United States, Hong Kong, Japan, Canada, New Zealand",
+    "Awards": "6 nominations",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTU1MTkxNzc5NF5BMl5BanBnXkFtZTgwOTM2Mzk3MTI@._V1_SX300.jpg",
+    "Ratings": [
+        {
+            "Source": "Internet Movie Database",
+            "Value": "5.9/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "51%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "44/100"
+        }
+    ],
+    "Metascore": "44",
+    "imdbRating": "5.9",
+    "imdbVotes": "111,833",
+    "imdbID": "tt3717490",
+    "Type": "movie",
+    "DVD": "13 Jun 2017",
+    "BoxOffice": "$85,364,450",
+    "Production": "N/A",
+    "Website": "N/A",
+    "Response": "True"
+},
+{
+    "dvd": "14 Aug 2020",
+    "Title": "Project Power",
+    "Year": "2020",
+    "Rated": "R",
+    "Released": "14 Aug 2020",
+    "Runtime": "113 min",
+    "Genre": "Action, Crime, Sci-Fi",
+    "Director": "Henry Joost, Ariel Schulman",
+    "Writer": "Mattson Tomlin",
+    "Actors": "Jamie Foxx, Joseph Gordon-Levitt, Dominique Fishback",
+    "Plot": "When a pill that gives its users unpredictable superpowers for five minutes hits the streets of New Orleans, a teenage dealer and a local cop must team with an ex-soldier to take down the group responsible for its creation.",
+    "Language": "English, Spanish",
+    "Country": "United States",
+    "Awards": "2 wins & 7 nominations",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BYzBhOWU4ODAtZDYzYi00NDU1LWIzZWUtNDZmMDgxODljZTVmXkEyXkFqcGdeQXVyMTAwMzM3NDI3._V1_SX300.jpg",
+    "Ratings": [
+        {
+            "Source": "Internet Movie Database",
+            "Value": "6.0/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "61%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "51/100"
+        }
+    ],
+    "Metascore": "51",
+    "imdbRating": "6.0",
+    "imdbVotes": "94,175",
+    "imdbID": "tt7550000",
+    "Type": "movie",
+    "DVD": "14 Aug 2020",
+    "BoxOffice": "N/A",
+    "Production": "N/A",
+    "Website": "N/A",
+    "Response": "True"
+}
 ]
